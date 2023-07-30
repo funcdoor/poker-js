@@ -123,15 +123,18 @@ class Table {
   }
 
   getState() {
+    let player = this.players[this.currentPlayerIndex]
     return {
       players: this.players.map(p => p.name),
       currentPlayerIndex: this.currentPlayerIndex,
-      currentPlayerHand: this.players[this.currentPlayerIndex].hand.map(c => c.toString()),
+      currentPlayerHand: player.hand.map(c => c.toString()),
+      currentPlayerBet: player.bet,
       dealerPosition: this.dealerPosition,
       communityCards: this.communityCards,
       currentBet: this.currentBet,
       lastBet: this.lastBet,
       sidePots: this.sidePots,
+      // player's minimum bet will be (currentPlayerBet - currentBet)
     };
   }
 
