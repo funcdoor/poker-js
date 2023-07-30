@@ -1,0 +1,25 @@
+#communityCards {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.player {
+    width: 20%;
+    float: left;
+    text-align: center;
+}
+
+#controls {
+    clear: both;
+    text-align: center;
+}
+
+#log {
+    margin-top: 50px;
+  resize: none;
+}
+
+.active-player {
+    border: 2px solid red;
+  box-sizing: border-box;
+}
