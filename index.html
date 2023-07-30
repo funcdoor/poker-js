@@ -1,1 +1,48 @@
-😎
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  
+
+  
+  <div id="communityCards"></div>
+  <div id="players">
+    <div class="player" id="player1"></div>
+    <div class="player" id="player2"></div>
+    <div class="player" id="player3"></div>
+    <div class="player" id="player4"></div>
+    <div class="player" id="player5"></div>
+  </div>
+  <div id="controls">
+    <div id="currentPlayer"></div>
+    <button id="betButton">Bet</button>
+    <button id="foldButton">Fold</button>
+    <input type="number" id="betAmount">
+    <div id="errorMessage"></div>
+  </div>
+  <textarea id="log" rows="10" cols="80" readonly></textarea>
+  <div id="log"></div>
+
+  <script src="seedrandom.min.js"></script>
+  <script src="https://funcdoor.github.io/poker-js/poker.js"></script>
+  <script src="pagescript.js"></script>
+
+
+
+
+  <!--
+  This script places a badge on your repl's full-browser view back to your repl's cover
+  page. Try various colors for the theme: dark, light, red, orange, yellow, lime, green,
+  teal, blue, blurple, magenta, pink!
+  -->
+  <script src="https://replit.com/public/js/replit-badge-v2.js" theme="dark" position="bottom-right"></script>
+</body>
+
+</html>
