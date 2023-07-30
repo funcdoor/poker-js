@@ -134,6 +134,7 @@ class Table {
       currentBet: this.currentBet,
       lastBet: this.lastBet,
       sidePots: this.sidePots,
+      holeRank: rankHole(player.hand[0], player.hand[1])
       // player's minimum bet will be (currentPlayerBet - currentBet)
     };
   }
@@ -462,6 +463,7 @@ class Table {
 
     return probabilities;
   }
+
 }
 
 function combinations(array, k) {
@@ -555,4 +557,39 @@ function scoreHand(hand) {
   return result;
 }
 
-module.exports = {Player, Table}
+function rankHole(card1, card2) {
+  let c1Rank = ranks[card1.rank];
+  let c2Rank = ranks[card2.rank];
+  let isSuited = card1.suit === card2.suit;
+
+  // Order cards by rank. c1 will always be the card of equal or higher rank
+  if (card1.Rank < card2.Rank) {
+    [c1Rank, c2Rank] = [c2Rank, c1Rank];
+  }
+  let hand = c1Rank + c2Rank + (isSuited ? "s" : "");
+
+  console.log(`hand: ${hand}`);
+
+  // Define hand groups
+  let groups = [
+    ["AA", "AKs", "KK", "QQ", "JJ"],
+    ["AK", "AQs", "AJs", "KQs", "TT"],
+    ["AQ", "ATs", "KJs", "QJs", "JTs", "99"],
+    ["AJ", "KQ", "KTs", "QTs", "J9s", "T9s", "98s", "88"],
+    ["A9s", "A8s", "A7s", "A6s", "A5s", "A4s", "A3s", "A2s", "KJ", "QJ", "JT", "Q9s", "T8s", "97s", "87s", "77", "76s", "66"],
+    ["AT", "KT", "QT", "J8s", "86s", "75s", "65s", "55", "54s"],
+    ["K9s", "K8s", "K7s", "K6s", "K5s", "K4s", "K3s", "K2s", "J9", "T9", "98", "64s", "53s", "44", "43s", "33", "22"],
+    ["A9", "K9", "Q9", "J8", "J7s", "T8", "96s", "87", "85s", "76", "74s", "65", "54", "42s", "32s"]
+  ];
+
+  // Determine which group the hand belongs to
+  for (let i = 0; i < groups.length; i++) {
+    if (groups[i].includes(hand)) {
+      return i + 1; // Groups are 1-indexed
+    }
+  }
+
+  return 9; // If hand didn't match any groups, it belongs to group 9
+}
+
+module.exports = { Player, Table }
